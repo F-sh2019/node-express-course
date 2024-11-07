@@ -49,23 +49,23 @@ const server = http.createServer((req, res) => {
       console.log("The body of the post is ", body);
       // here, you can add your own logic
       if (body["item"]) {
-        console.log(randomNum) ;
-        console.log(body["item"]);
-         if (body["item"] < randomNum){
           console.log(randomNum) ;
           console.log(body["item"]);
-
-          item ="your guess in less than the target!";
+         
+          if (body["item"] < randomNum){
+              console.log(randomNum) ;
+              console.log(body["item"]);
+              item ="your guess in less than the target!";
          }
-        else if(body["item"] > randomNum){
-          item ="your guess in bigger than the target!";
+         else if(body["item"] > randomNum){
+              item ="your guess in bigger than the target!";
          }
          else{
-          item ="You Guessed correct!";
+              item ="You Guessed correct!";
          }
           
       } else {
-        item = "Nothing was entered.";
+          item = "Nothing was entered.";
       }
       // Your code changes would end here
       res.writeHead(303, {
