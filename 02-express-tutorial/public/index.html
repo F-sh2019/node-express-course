@@ -1,0 +1,18 @@
+<html>
+    <head>
+
+    </head>
+    </html>
+    <body>
+        <h1><p>Hey this is the home page</p></h1>
+        <button onclick="fetchProducts()">Fetch Products</button>
+        <div id="products"></div>
+        <script>
+            async function fetchProducts() {
+                const response = await fetch('/api/v1/products');
+                const data = await response.json();
+                document.getElementById('products').innerText = JSON.stringify(data, null, 2);
+            }
+        </script>
+    </body>
+</html>
