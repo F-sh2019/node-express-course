@@ -2,12 +2,12 @@ const { products } = require("./data");
 const express= require('express') ;
 const app=express() ;
 
-// const logger=(req, res, next)=>{
-//     console.log(req.methode) ;
-//     console.log(req.url) ;
-//     console.log(Date.now()) ;
-//     next() ;
-// }
+const logger=(req, res, next)=>{
+    console.log(req.methode) ;
+    console.log(req.url) ;
+    console.log(Date.now()) ;
+    next() ;
+}
 
 app.use(logger)
 app.use(express.static("./public")) 
