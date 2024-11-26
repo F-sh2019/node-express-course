@@ -1,18 +1,16 @@
+
+
 const { products } = require("./data");
 const express= require('express') ;
+const logger=require('./logger') ;
 const app=express() ;
 
-const logger=(req, res, next)=>{
-    console.log(req.methode) ;
-    console.log(req.url) ;
-    console.log(Date.now()) ;
-    next() ;
-}
 
-app.use(logger)
-app.use(express.static("./public")) 
+app.use(logger) ;
 
-app.get('/api/v1/test' ,logger, (req, res)=>{
+//app.use(express.static("./public")) 
+
+app.get('/api/v1/test' , (req, res)=>{
     res.json({ message: "It worked!" });
     })
 
