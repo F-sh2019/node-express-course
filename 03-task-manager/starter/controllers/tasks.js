@@ -26,7 +26,8 @@ const getTask= asyncWrapper(async (req, res , next) =>{
     if(!task){
         const err= new Error('not found') ;
         err.status=404 ;
-        return next(createCustomError('No task with id: ${taskID}'),404) ;
+        return next(createCustomError(`No task with id: ${taskID}`,404)) ;
+        
         //return res.status(4040).json({msg:'No task with id: ${taskID}'})
     }
     res.status(200).json({task})
@@ -44,7 +45,7 @@ const updateTask=asyncWrapper(async (req, res) =>{
             overWrirte: true,
         })
         if(!task){
-            return next(createCustomError('No task with id: ${taskID}'),404) ;
+            return next(createCustomError(`No task with id: ${taskID}`,404) );
         }
         res.status(200).json({task})
    })
@@ -52,9 +53,9 @@ const updateTask=asyncWrapper(async (req, res) =>{
 const deleteTask= asyncWrapper( async (req, res) =>{
    
         const{id:taskID} = req.params ;
-        const task=awaitTask.findOneAndDelete({_id:taskID});
+        const task=await Task.findOneAndDelete({_id:taskID});
         if(!task){
-            return next(createCustomError('No task with id: ${taskID}'),404) ;
+            return next(createCustomError(`No task with id: ${taskID}`,404) );
         }
         res.status(200).json({task})
    
